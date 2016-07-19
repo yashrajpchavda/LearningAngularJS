@@ -9,24 +9,14 @@ myApp.controller( 'mainController', [ '$scope', '$filter', '$log', function( $sc
         return $filter( 'lowercase' )( $scope.myHandle );
     };
 
-    $scope.$watch( 'myHandle', function( newValue, oldValue ) {
+    $scope.characters = 5;
 
-        $log.info( 'changed' );
-        $log.log( 'old: ' + oldValue );
-        $log.log( 'new: ' + newValue );
-
-    } );
-
-    setTimeout( function() {
-
-        $scope.$apply( function() {
-
-            $scope.myHandle = 'somethingnew';
-            console.log( 'scope changed !' );
-
-        } );
-
-
-    }, 3000 );
+    $scope.rules = [ {
+        ruleName: 'Must be 5 characters'
+    }, {
+        ruleName: 'Must not be used elsewhere'
+    }, {
+        ruleName: 'Must be cool!'
+    } ];
 
 } ] );
