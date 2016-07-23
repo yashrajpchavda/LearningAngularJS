@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="myApp">
+
+<head>
+    <title>Learn and Understand AngularJS</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="utf-8">
+
+    <!-- load bootstrap from the cdn-->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+
+    <!-- load angular via cdn -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">AngularJS</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <div ng-controller="mainController">
+
+            <div>
+                <label>What is your twitter handle?</label>
+                <input type="text" ng-model="myHandle" />
+            </div>
+
+            <div class="alert" ng-class="{ 'alert-warning': myHandle.length < characters, 'alert-danger': myHandle.length > characters }" ng-show="myHandle.length !== characters">
+
+                <div ng-show="myHandle.length < characters">
+                    You have less than {{ characters }} characters.
+                </div>
+                <div ng-show="myHandle.length > characters">
+                    You have more than {{ characters }} characters.
+                </div>
+
+
+            </div>
+
+            <hr />
+
+            <h1>twitter.com/{{ lowercaseHandle() }}</h1>
+
+            <hr />
+            <h3>Cities</h3>
+            <ul>
+                <li ng-repeat="city in cities">{{ city.Name }}</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
