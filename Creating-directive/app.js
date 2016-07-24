@@ -74,7 +74,7 @@ myApp.directive( 'searchResult', function() {
             personObject: '=',
             formatAddressFunction: '&'
         },
-        compile: function( elem, attrs ) {
+        /*compile: function( elem, attrs ) {
 
             //console.log( 'compiling...' );
             //console.log( elem.html() );
@@ -93,6 +93,13 @@ myApp.directive( 'searchResult', function() {
                 }
 
             };
+
+        }*/
+        link: function( scope, element, attrs ) {
+
+            if ( scope.personObject.name === 'Jane Anderson' ) {
+                element.addClass( 'active' );
+            }
 
         }
 
