@@ -76,22 +76,19 @@ myApp.directive( 'searchResult', function() {
         },
         compile: function( elem, attrs ) {
 
-            console.log( 'compiling...' );
-            console.log( elem.html() );
+            //console.log( 'compiling...' );
+            //console.log( elem.html() );
 
             return {
 
-                pre: function( scope, element, preAttrs ) {
-
-                    console.log( 'pre linking...' );
-                    console.log( element.html() );
-
-                },
-
                 post: function( scope, element, postAttrs ) {
 
-                    console.log( 'post linking...' );
-                    console.log( element.html() );
+                    if ( scope.personObject.name === 'Jane Anderson' ) {
+                        element.addClass( 'active' );
+                    }
+
+                    //console.log( 'post linking...' );
+                    //console.log( element.html() );
 
                 }
 
