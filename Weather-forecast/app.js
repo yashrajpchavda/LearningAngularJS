@@ -55,7 +55,7 @@ weatherApp.controller( 'homeController', [ '$scope', 'cityService', function( $s
 weatherApp.controller( 'forecastController', [ '$scope', '$resource', '$filter', '$routeParams', 'cityService', function( $scope, $resource, $filter, $routeParams, cityService ) {
     'use strict';
 
-    $scope.days = $routeParams.days || 1;
+    $scope.days = $routeParams.days || '2';
 
     $scope.city = cityService.city;
 
@@ -73,7 +73,7 @@ weatherApp.controller( 'forecastController', [ '$scope', '$resource', '$filter',
 
     $scope.weatherResults = $scope.weatherAPI.get( {
         q: $scope.city,
-        cnt: 2
+        cnt: $scope.days
     } );
 
     $scope.convertToCelsius = function( degK ) {
