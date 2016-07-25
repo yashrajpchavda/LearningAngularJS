@@ -52,11 +52,40 @@ weatherApp.controller( 'homeController', [ '$scope', 'cityService', function( $s
 
 } ] );
 
-weatherApp.controller( 'forecastController', [ '$scope', '$routeParams', 'cityService', function( $scope, $routeParams, cityService ) {
+weatherApp.controller( 'forecastController', [ '$scope', '$resource', '$filter', '$routeParams', 'cityService', function( $scope, $resource, $filter, $routeParams, cityService ) {
     'use strict';
 
     $scope.days = $routeParams.days || 1;
 
     $scope.city = cityService.city;
+
+    var url = 'http://api.openweathermap.org/data/2.5/forecast/daily';
+
+    $scope.weatherAPI = $resource( url, {
+        callback: 'JSON_CALLBACK',
+        mode: 'json',
+        appid: '1194c78cf977ead96fd4ba9e8b37ac5b'
+    }, {
+        get: {
+            method: 'JSONP'
+        }
+    } );
+
+    $scope.weatherResults = $scope.weatherAPI.get( {
+        q: $scope.city,
+        cnt: 2
+    } );
+
+    $scope.convertToCelsius = function( degK ) {
+
+        return Math.round( degK - 273.15 );
+
+    };
+
+    $scope.convertToDate = function( dt ) {
+
+        return $filter( 'date' )( new Date( dt * 1000 ), 'MMM d, yyyy' );
+
+    };
 
 } ] );
