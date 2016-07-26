@@ -38,6 +38,25 @@ weatherApp.service( 'cityService', function() {
 
 } );
 
+// DIRECTIVES
+weatherApp.directive( 'weatherReport', function() {
+    'use strict';
+
+    return {
+
+        restrict: 'E',
+        templateUrl: 'directives/weatherReport.html',
+        replace: true,
+        scope: {
+            weatherObject: '=',
+            convertToDate: '&',
+            convertToCelsius: '&'
+        }
+
+    };
+
+} );
+
 // CONTROLLERS
 weatherApp.controller( 'homeController', [ '$scope', 'cityService', function( $scope, cityService ) {
     'use strict';
